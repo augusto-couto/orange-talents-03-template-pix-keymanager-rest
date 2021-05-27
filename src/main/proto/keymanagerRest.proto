@@ -7,14 +7,104 @@ option objc_class_prefix = "HLW";
 
 package br.com.zupacademy.augusto;
 
-service KeymanagerRestService {
-  rpc send (KeymanagerRestRequest) returns (KeymanagerRestReply) {}
+import "google/protobuf/timestamp.proto";
+
+service KeymanagerCadastraGrpcService {
+  rpc cadastra (NewPixRequest) returns (NewPixResponse) {}
 }
 
-message KeymanagerRestRequest {
-  string name = 1;
+service KeymanagerDeletaGrpcService {
+  rpc deleta (DeletePixRequest) returns (DeletePixResponse) {}
 }
 
-message KeymanagerRestReply {
-  string message = 1;
+service KeyManagerConsultaGrpcService {
+  rpc consulta (ConsultaPixRequest) returns (ConsultaPixResponse) {}
+}
+
+service KeyManagerListaChavesGrpcService {
+  rpc lista (ListaPixRequest) returns (ListaPixResponse) {}
+}
+
+message ListaPixRequest {
+  string clienteId = 1;
+}
+
+message ListaPixResponse {
+  message Chave {
+    string pixId = 1;
+    TipoChave tipoChave = 2;
+    string chave = 3;
+    TipoConta tipoConta = 4;
+    google.protobuf.Timestamp criadoEm = 5;
+  }
+  string clienteId = 1;
+  repeated ListaPixResponse.Chave chaves = 2;
+}
+
+message ConsultaPixRequest {
+  message TipoBuscaPixId {
+    string clienteId = 1;
+    int64 pixId = 2;
+  }
+
+  oneof tipo {
+    TipoBuscaPixId tipoBusca = 1;
+    string chave = 2;
+  }
+}
+
+message ConsultaPixResponse {
+  string clienteId = 1;
+  string pixId = 2;
+  ChavePix chavePix = 3;
+}
+
+message Conta {
+  TipoConta tipoConta = 1;
+  string instituicao = 2;
+  string nomeTitular = 3;
+  string cpfTitular = 4;
+  string agencia = 5;
+  string numeroConta = 6;
+}
+
+message ChavePix {
+  TipoChave tipoChave = 1;
+  string chave = 2;
+  Conta conta = 3;
+  google.protobuf.Timestamp criadaEm = 4;
+}
+
+message DeletePixRequest {
+  int64 idPix = 1;
+  string idCliente = 2;
+}
+
+message DeletePixResponse {
+  int64 idPix = 1;
+  string idCliente = 2;
+}
+
+enum TipoChave {
+  TIPO_CHAVE_UNSPECIFIED = 0;
+  CPF = 1;
+  PHONE = 2;
+  EMAIL = 3;
+  RANDOM = 4;
+}
+
+enum TipoConta {
+  TIPO_CONTA_UNSPECIFIED = 0;
+  CONTA_CORRENTE = 1;
+  CONTA_POUPANCA = 2;
+}
+
+message NewPixRequest {
+  string idCliente = 1;
+  TipoChave tipoChave = 2;
+  string valorChave = 3;
+  TipoConta tipoConta = 4;
+}
+message NewPixResponse {
+  int64 idPix = 1;
 }
