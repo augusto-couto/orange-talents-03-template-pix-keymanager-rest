@@ -1,4 +1,4 @@
-package br.com.zupacademy.augusto.shared.grpc
+package br.com.zupacademy.augusto.keymanager.shared.grpc
 
 import br.com.zupacademy.augusto.KeymanagerCadastraGrpcServiceGrpc
 import io.grpc.ManagedChannel

@@ -1,5 +1,6 @@
-package br.com.zupacademy.augusto
+package br.com.zupacademy.augusto.keymanager.cadastro
 
+import br.com.zupacademy.augusto.KeymanagerCadastraGrpcServiceGrpc
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller

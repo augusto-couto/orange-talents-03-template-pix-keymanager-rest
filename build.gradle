@@ -38,6 +38,10 @@ dependencies {
 
     implementation("io.micronaut:micronaut-http-client")
     implementation("br.com.caelum.stella:caelum-stella-core:2.1.2")
+
+    testImplementation("com.h2database:h2")
+    testImplementation("io.micronaut:micronaut-http-client")
+    testImplementation("org.mockito:mockito-junit-jupiter:2.22.0")
 }
 
 

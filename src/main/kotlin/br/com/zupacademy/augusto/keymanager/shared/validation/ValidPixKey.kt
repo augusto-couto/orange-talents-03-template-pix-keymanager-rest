@@ -1,6 +1,6 @@
-package br.com.zupacademy.augusto.shared.validation
+package br.com.zupacademy.augusto.keymanager.shared.validation
 
-import br.com.zupacademy.augusto.NovaChavePixRequest
+import br.com.zupacademy.augusto.keymanager.cadastro.NovaChavePixRequest
 import io.micronaut.core.annotation.AnnotationValue
 import io.micronaut.validation.validator.constraints.ConstraintValidator
 import io.micronaut.validation.validator.constraints.ConstraintValidatorContext

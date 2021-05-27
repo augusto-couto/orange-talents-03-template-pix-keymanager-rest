@@ -1,4 +1,4 @@
-package br.com.zupacademy.augusto.shared
+package br.com.zupacademy.augusto.keymanager.shared
 
 import io.grpc.Status
 import io.grpc.StatusRuntimeException

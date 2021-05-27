@@ -1,10 +1,11 @@
-package br.com.zupacademy.augusto
+package br.com.zupacademy.augusto.keymanager.cadastro
 
 import br.com.caelum.stella.validation.CPFValidator
-import br.com.zupacademy.augusto.shared.validation.ValidPixKey
+import br.com.zupacademy.augusto.NewPixRequest
+import br.com.zupacademy.augusto.TipoChave
+import br.com.zupacademy.augusto.TipoConta
+import br.com.zupacademy.augusto.keymanager.shared.validation.ValidPixKey
 import io.micronaut.core.annotation.Introspected
-import io.micronaut.validation.validator.constraints.ConstraintValidatorContext
-import io.micronaut.validation.validator.constraints.EmailValidator
 import java.util.*
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
@@ -28,7 +29,7 @@ class NovaChavePixRequest(
 
 }
 
-enum class  TipoChaveRequest(val atributoGrpc: TipoChave) {
+enum class TipoChaveRequest(val atributoGrpc: TipoChave) {
     CPF(TipoChave.CPF)
     {
         override fun valida(valorChave: String?): Boolean {
