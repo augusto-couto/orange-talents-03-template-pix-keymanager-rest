@@ -53,6 +53,32 @@ internal class MyExceptionHandlerTest {
     }
 
     @Test
+    internal fun `deve retornar 403 quando status PERMISSIO_DENIED`() {
+        val exception = MyExceptionHandler()
+            .handle(requestGenerica,
+                StatusRuntimeException(Status.PERMISSION_DENIED.withDescription("permissao negada")))
+
+        with(exception) {
+            assertEquals(HttpStatus.FORBIDDEN, exception.status)
+            assertNotNull(exception.body())
+            assertEquals("permissao negada", (exception.body() as JsonError).message)
+        }
+    }
+
+    @Test
+    internal fun `deve retornar 412 quando status FAILED_PRECONDITION`() {
+        val exception = MyExceptionHandler()
+            .handle(requestGenerica,
+                StatusRuntimeException(Status.FAILED_PRECONDITION.withDescription("pre-condicao falhou")))
+
+        with(exception) {
+            assertEquals(HttpStatus.PRECONDITION_FAILED, exception.status)
+            assertNotNull(exception.body())
+            assertEquals("pre-condicao falhou", (exception.body() as JsonError).message)
+        }
+    }
+
+    @Test
     internal fun `deve retornar 500 quando qualquer outro erro`() {
         val exception = MyExceptionHandler()
             .handle(requestGenerica,
