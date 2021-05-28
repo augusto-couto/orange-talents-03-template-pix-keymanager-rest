@@ -22,6 +22,8 @@ class MyExceptionHandler: ExceptionHandler<StatusRuntimeException, HttpResponse<
         val (httpStatus, message) = when (statusCode) {
             Status.NOT_FOUND.code -> Pair(HttpStatus.NOT_FOUND, statusDescription)
             Status.INVALID_ARGUMENT.code -> Pair(HttpStatus.BAD_REQUEST, "Dados de requisição inválidos.")
+            Status.PERMISSION_DENIED.code -> Pair(HttpStatus.FORBIDDEN, statusDescription)
+            Status.FAILED_PRECONDITION.code -> Pair(HttpStatus.PRECONDITION_FAILED, statusDescription)
             Status.ALREADY_EXISTS.code -> Pair(HttpStatus.UNPROCESSABLE_ENTITY, statusDescription)
             else -> {
                 LOGGER.error("Erro inesperado '${exception.javaClass.name}' ao processar requisição", exception)
