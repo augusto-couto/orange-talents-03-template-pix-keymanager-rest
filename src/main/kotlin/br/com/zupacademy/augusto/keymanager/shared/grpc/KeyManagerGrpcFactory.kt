@@ -1,5 +1,6 @@
 package br.com.zupacademy.augusto.keymanager.shared.grpc
 
+import br.com.zupacademy.augusto.KeyManagerConsultaGrpcServiceGrpc
 import br.com.zupacademy.augusto.KeymanagerCadastraGrpcServiceGrpc
 import br.com.zupacademy.augusto.KeymanagerDeletaGrpcServiceGrpc
 import io.grpc.ManagedChannel
@@ -15,4 +16,7 @@ class KeyManagerGrpcFactory(@GrpcChannel("keyManager") val channel: ManagedChann
 
     @Singleton
     fun deletaChave() = KeymanagerDeletaGrpcServiceGrpc.newBlockingStub(channel)
+
+    @Singleton
+    fun consultaChave() = KeyManagerConsultaGrpcServiceGrpc.newBlockingStub(channel)
 }

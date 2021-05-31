@@ -4,6 +4,10 @@ micronaut:
   server:
     port: ${SERVER_PORT:8080}
 
+jackson:
+  serialization:
+    writeDatesAsTimestamps: false
+
 grpc:
   client:
     plaintext: true
