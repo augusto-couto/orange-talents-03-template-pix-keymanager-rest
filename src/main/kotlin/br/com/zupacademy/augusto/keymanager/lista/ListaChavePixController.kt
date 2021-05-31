@@ -26,7 +26,6 @@ class ListaChavePixController(
             .setClienteId(clienteId.toString())
             .build())
 
-        return HttpResponse.ok(ListaChavePixResponse(response))
+        return HttpResponse.ok(response.chavesList.map { ListaChavePixResponse(it) } )
     }
-
 }
